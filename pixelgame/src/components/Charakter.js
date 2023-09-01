@@ -6,6 +6,12 @@ import SwordAttack1 from "../assets/Character/hero/Attack With Sword/1.png";
 import SwordAttack2 from "../assets/Character/hero/Attack With Sword/2.png";
 import SwordAttack3 from "../assets/Character/hero/Attack With Sword/3.png";
 import SwordAttack4 from "../assets/Character/hero/Attack With Sword/4.png";
+import WalkingWithSword1 from "../assets/Character/hero/Walk With Sword/1.png";
+import WalkingWithSword2 from "../assets/Character/hero/Walk With Sword/2.png";
+import WalkingWithSword3 from "../assets/Character/hero/Walk With Sword/3.png";
+import WalkingWithSword4 from "../assets/Character/hero/Walk With Sword/4.png";
+import WalkingWithSword5 from "../assets/Character/hero/Walk With Sword/5.png";
+import WalkingWithSword6 from "../assets/Character/hero/Walk With Sword/6.png";
 import "../components/style files/Charakter.scss";
 
 const Character = () => {
@@ -19,15 +25,41 @@ const Character = () => {
     SwordAttack3,
     SwordAttack4,
   ];
+
+  const walkingWithSword = [
+    WalkingWithSword1,
+    WalkingWithSword2,
+    WalkingWithSword3,
+    WalkingWithSword4,
+    WalkingWithSword5,
+    WalkingWithSword6,
+  ];
+
+  const frameWalkingWithSword = (e) => {
+    if (e.key === "ArrowLeft" || "ArrowRight") {
+      let index = 0;
+      // Intervall für die Laufanimation nach links
+      const leftInterval = setInterval(() => {
+        setCurrentImage(walkingWithSword[index]);
+        index++;
+        if (index === walkingWithSword.length) {
+          clearInterval(leftInterval);
+          setCurrentImage(Hero);
+        }
+      }, 200);
+    }
+  };
   const handleKeyDown = (e) => {
     if (e.key === "ArrowLeft") {
       setIsFlipped(false); // Bild wird zurückgesetzt
+      frameWalkingWithSword(e);
       setPosition((prevState) => ({
         ...prevState,
         left: prevState.left - 10,
       }));
     } else if (e.key === "ArrowRight") {
       setIsFlipped(true); // Bild wird gespiegelt
+      frameWalkingWithSword(e);
       setCurrentImage(Hero2);
       setPosition((prevState) => ({
         ...prevState,
