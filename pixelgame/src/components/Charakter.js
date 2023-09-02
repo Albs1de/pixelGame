@@ -49,7 +49,7 @@ const Character = () => {
       }, 200);
     }
   };
-  const handleKeyDown = (e) => {
+  const handleArrowKey = (e) => {
     if (e.key === "ArrowLeft") {
       setIsFlipped(false); // Bild wird zurückgesetzt
       frameWalkingWithSword(e);
@@ -90,11 +90,11 @@ const Character = () => {
   });
 
   useEffect(() => {
-    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keydown", handleArrowKey);
     return () => {
-      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("keydown", handleArrowKey);
     };
-  }, []);
+  });
 
   return (
     <div className="character-walk" style={{ left: `${position.left}px` }}>
